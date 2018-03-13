@@ -283,7 +283,7 @@ void TrainerInternal::createParameterUpdater(bool testing) {
                  config_->getOptConfig().average_window() > 0) {
         parameterUpdater_.reset(new SgdUpdaterWithCpuAverager(*config_));
       } else {
-        parameterUpdater_.reset(new SgdLocalUpdater(*config_));
+        parameterUpdater_.reset(new SgdThreadUpdater(*config_));
       }
     } else {
       LOG(FATAL) << "Unsupported algorithm in local mode: " << alg;
